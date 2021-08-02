@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WriteToDoComponent } from './write-to-do.component';
+import { DialogAddTaskComponent } from './dialog-add-task.component';
 
-describe('WriteToDoComponent', () => {
-  let component: WriteToDoComponent;
-  let fixture: ComponentFixture<WriteToDoComponent>;
+describe('DialogAddTaskComponent', () => {
+  let component: DialogAddTaskComponent;
+  let fixture: ComponentFixture<DialogAddTaskComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WriteToDoComponent ]
+      declarations: [ DialogAddTaskComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WriteToDoComponent);
+    fixture = TestBed.createComponent(DialogAddTaskComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

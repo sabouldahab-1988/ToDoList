@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>
+  Add ToDo
+</h2>
+<mat-dialog-content>
+  <form [formGroup]="toDoForm" class="example-form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="toDoForm.invalid">Title is required</mat-error>
+    </mat-form-field>
+    <mat-checkbox class="example-margin" formControlName="completed">Completed</mat-checkbox>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button type="submit" (click)="onSubmit()">Save</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

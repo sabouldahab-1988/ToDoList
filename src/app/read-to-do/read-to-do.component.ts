@@ -4,8 +4,10 @@ import { Task } from '../store/Task';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { TaskState } from '../store/task.state';
+import { TaskState, TaskStateModel } from '../store/task.state';
 import { map } from 'rxjs/internal/operators/map';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DialogAddTaskComponent } from '../dialog-add-task/dialog-add-task.component';
 
 @Component({
   selector: 'app-read-to-do',
@@ -18,8 +20,8 @@ export class ReadToDoComponent implements OnInit {
   dataSource:MatTableDataSource<Task>;
   tasks:Task[];
   taskSubscription: Subscription;
-
-  constructor(private store:Store) { }
+  task:Task;
+  constructor(private store:Store,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.tasks$=this.store.select(state=>state.tasks.tasks);
@@ -32,5 +34,15 @@ export class ReadToDoComponent implements OnInit {
     // .subscribe();
 
   // this.store.dispatch(TaskAc.BeginGetCatsAction());  }
+  }
+  addTask(): void {
+    const dialogRef = this.dialog.open(DialogAddTaskComponent, {
+      width: '350px',
+      data:this.task
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

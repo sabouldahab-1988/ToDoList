@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReadToDoComponent } from './read-to-do/read-to-do.component';
-import { WriteToDoComponent } from './write-to-do/write-to-do.component';
 import { NgxsModule } from '@ngxs/store';
 import { TaskState } from './store/task.state';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
@@ -17,13 +16,19 @@ import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule } from "@angular/common/http";
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogAddTaskComponent } from './dialog-add-task/dialog-add-task.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     ReadToDoComponent,
-    WriteToDoComponent
+    DialogAddTaskComponent
     ],
+    entryComponents:[DialogAddTaskComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,6 +37,11 @@ import { MatSortModule } from '@angular/material/sort';
     MatToolbarModule,
     MatIconModule,
     HttpClientModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
     NgxsModule.forRoot([
       TaskState
     ]),
