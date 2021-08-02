@@ -20,7 +20,7 @@ export class TaskState{
       return state.tasks;
     }
 
-    @Selector()
+   /* @Selector()
     static maxID(state:TaskStateModel){
       // let max = 0;
       // state.tasks.forEach(character => {
@@ -29,7 +29,7 @@ export class TaskState{
       //   }
       // });
       return 12;
-    }
+    }*/
 
     @Action(AddTask)
     add({getState, patchState }: StateContext<TaskStateModel>, { payload }:AddTask) {
