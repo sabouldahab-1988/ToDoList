@@ -20,16 +20,15 @@ export class TaskState{
       return state.tasks;
     }
 
-   /* @Selector()
+    @Selector()
     static maxID(state:TaskStateModel){
-      // let max = 0;
-      // state.tasks.forEach(character => {
-      //   if (character.id > max) {
-      //     max = character.id;
-      //   }
-      // });
-      return 12;
-    }*/
+      state.tasks.reduce((prev, curr) => {
+        if(curr.id>prev)
+          prev=curr.id;
+        return prev;
+      },0
+      )
+    }
 
     @Action(AddTask)
     add({getState, patchState }: StateContext<TaskStateModel>, { payload }:AddTask) {

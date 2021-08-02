@@ -16,24 +16,18 @@ import { DialogAddTaskComponent } from '../dialog-add-task/dialog-add-task.compo
 })
 export class ReadToDoComponent implements OnInit {
 
-  tasks$:Observable<Task>;
+  tasks$:Observable<Task[]>;
   dataSource:MatTableDataSource<Task>;
   tasks:Task[];
   taskSubscription: Subscription;
   task:Task;
+  displayedColumns: string[] = ['name', 'completed'];
+
   constructor(private store:Store,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.tasks$=this.store.select(state=>state.tasks.tasks);
-    // this.taskSubscription = this.tasks$
-    // .pipe(
-    //   map((taskState: TaskState) => {
-    //      this.tasks=taskState.;
-    //   })
-    // )
-    // .subscribe();
-
-  // this.store.dispatch(TaskAc.BeginGetCatsAction());  }
+    this.tasks$.subscribe(tasks=>this.tasks=tasks);
   }
   addTask(): void {
     const dialogRef = this.dialog.open(DialogAddTaskComponent, {

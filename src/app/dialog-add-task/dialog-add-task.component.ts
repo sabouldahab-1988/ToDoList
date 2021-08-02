@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { Task } from '../store/Task';
 import { AddTask } from '../store/task.actions';
@@ -16,7 +16,7 @@ export class DialogAddTaskComponent implements OnInit {
    tasks$:Observable<Task[]>;
    maxID:number=0;
 
-   constructor(@Inject(MAT_DIALOG_DATA) public data: Task,private store:Store,private fb:FormBuilder) { }
+   constructor(@Inject(MAT_DIALOG_DATA) public data: Task,private store:Store,private fb:FormBuilder,private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.toDoForm=this.fb.group({
@@ -30,6 +30,7 @@ export class DialogAddTaskComponent implements OnInit {
     if(this.toDoForm.valid===true){
       this.maxID+=1;
       this.store.dispatch(new AddTask({id:this.maxID,name:this.toDoForm.value.name,completed:this.toDoForm.value.completed}));
+      this.matDialog.closeAll();
     }
   }
 
