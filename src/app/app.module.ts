@@ -22,11 +22,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DialogRemoveTaskComponent } from './dialog-remove-task/dialog-remove-task.component';
 @NgModule({
   declarations: [
     AppComponent,
     ReadToDoComponent,
-    DialogAddTaskComponent
+    DialogAddTaskComponent,
+    DialogRemoveTaskComponent
     ],
     entryComponents:[DialogAddTaskComponent],
   imports: [

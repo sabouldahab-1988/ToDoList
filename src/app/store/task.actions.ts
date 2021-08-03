@@ -9,5 +9,11 @@ export class AddTask{
 export class RemoveTask{
   static readonly type='[TASK] Remove';
 
-  constructor(public payload:string){}
+  constructor(public payload:number){}
+}
+
+export class UpdateTask{
+  static readonly type='[TASK] Update';
+
+  constructor(public payload:Task){}
 }
