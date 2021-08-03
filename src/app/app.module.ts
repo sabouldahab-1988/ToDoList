@@ -23,12 +23,19 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogRemoveTaskComponent } from './dialog-remove-task/dialog-remove-task.component';
+import { TaskDetailsComponent } from './task-details/task-details.component';
+import { AppHeaderComponent } from './app-header/app-header.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 @NgModule({
   declarations: [
     AppComponent,
     ReadToDoComponent,
     DialogAddTaskComponent,
-    DialogRemoveTaskComponent
+    DialogRemoveTaskComponent,
+    TaskDetailsComponent,
+    AppHeaderComponent
     ],
     entryComponents:[DialogAddTaskComponent],
   imports: [
@@ -44,6 +51,8 @@ import { DialogRemoveTaskComponent } from './dialog-remove-task/dialog-remove-ta
     MatInputModule,
     MatCheckboxModule,
     ReactiveFormsModule,
+    MatGridListModule,
+    MatProgressSpinnerModule,
     NgxsModule.forRoot([
       TaskState
     ]),

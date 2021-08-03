@@ -1,4 +1,4 @@
-import { Task } from "./Task";
+import { Task } from "./task";
 
 export class AddTask{
   static readonly type ='[TASK] Add';
@@ -15,5 +15,16 @@ export class RemoveTask{
 export class UpdateTask{
   static readonly type='[TASK] Update';
 
-  constructor(public payload:Task){}
+  constructor(public payload:Task,public id:number){}
 }
+
+export class GetTasks {
+  static readonly type = '[Task] Get';
+}
+
+export class GetSelectedTask{
+  static readonly type='Task Get';
+
+  constructor(public payload:number){}
+}
+

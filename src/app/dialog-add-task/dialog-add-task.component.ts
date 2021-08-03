@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
-import { Task } from '../store/Task';
+import { Task } from '../store/task';
 import { AddTask, UpdateTask } from '../store/task.actions';
 import {FormGroup, FormControl,Validators,FormBuilder} from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -23,7 +23,7 @@ export class DialogAddTaskComponent implements OnInit {
         name:['',Validators.required],
         completed:[false]
     });
-    this.setCurrentMaxID();
+    // this.setCurrentMaxID();
     console.log(this.data);
     if(this.data!=undefined)
       this.setCurrentForm();
@@ -40,20 +40,20 @@ export class DialogAddTaskComponent implements OnInit {
   }
 
   insertNewTask(){
-    this.maxID+=1;
-    this.store.dispatch(new AddTask({id:this.maxID,name:this.toDoForm.value.name,completed:this.toDoForm.value.completed}));
+    // this.maxID+=1;
+    this.store.dispatch(new AddTask({userId:1001,id:0,title:this.toDoForm.value.name,completed:this.toDoForm.value.completed}));
     this.matDialog.closeAll();
   }
   updateTask(){
-    this.data.name=this.toDoForm.value.name;
+    this.data.title=this.toDoForm.value.name;
     this.data.completed=this.toDoForm.value.completed;
-    this.store.dispatch(new UpdateTask(this.data));
+    this.store.dispatch(new UpdateTask(this.data,this.data.id));
     this.matDialog.closeAll();
   }
 
   setCurrentForm(){
     this.toDoForm.setValue({
-      name:this.data.name,
+      name:this.data.title,
       completed:this.data.completed,
     })
   }

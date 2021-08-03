@@ -1,17 +1,6 @@
-
-
-<div class="container">
-  <div>
-    <mat-toolbar color="primary">
-      <span id="navbarIcon">
-        <mat-icon>home</mat-icon>
-      </span>
-      <span>ToDo </span>
-    </mat-toolbar>
-  </div>
-
+<app-header></app-header>
   <div class="ToDoContainer">
-    <app-read-to-do></app-read-to-do>
-  </div>
-</div>
+    <router-outlet></router-outlet>
 
+    <!-- <app-read-to-do></app-read-to-do> -->
+  </div>

@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Store,Select } from '@ngxs/store';
-import { Task } from '../store/Task';
+import { Task } from '../store/task';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
@@ -11,22 +11,27 @@ import { DialogRemoveTaskComponent } from '../dialog-remove-task/dialog-remove-t
 import {MatPaginator} from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
 import {MatSort} from '@angular/material/sort';
+import { GetTasks, UpdateTask } from '../store/task.actions';
+import { BaseComponent } from '../base.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-read-to-do',
   templateUrl: './read-to-do.component.html',
   styleUrls: ['./read-to-do.component.css']
 })
-export class ReadToDoComponent implements OnInit,AfterViewInit {
+export class ReadToDoComponent extends BaseComponent implements OnInit,AfterViewInit {
 
-  tasks$:Observable<Task[]>;
+  tasks$:Observable<any>;
   dataSource:MatTableDataSource<Task>;
   tasks:Task[];
   taskSubscription: Subscription;
   task:Task;
-  displayedColumns: string[] = ['name', 'completed','actions','id'];
+  displayedColumns: string[] = ['title', 'completed','actions','details','id'];
 
-  constructor(private store:Store,public dialog: MatDialog) { }
+  constructor(private store:Store,public dialog: MatDialog,public router:Router) {
+     super();
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -35,10 +40,14 @@ export class ReadToDoComponent implements OnInit,AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.tasks$=this.store.select(state=>state.tasks.tasks);
+    this.tasks$=this.store.dispatch(new GetTasks());
+    //Use this when you want to enable delete and add
+    //this.tasks$=this.store.select(state=>state.tasks.tasks);
+
     this.tasks$.subscribe(tasks=>
       {
-        this.dataSource=new MatTableDataSource<Task>(tasks);
+        this.dataSource=new MatTableDataSource<Task>(tasks.tasks.tasks);
+        // this.dataSource=new MatTableDataSource<Task>(tasks);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
@@ -74,9 +83,13 @@ export class ReadToDoComponent implements OnInit,AfterViewInit {
     });
   }
 
-  ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
+  onCompleted(task:Task):void{
+    task.completed=!task.completed;
+    this.store.dispatch(new UpdateTask(task,task.id));
+  }
+
+  onDetails(id:number){
+    this.router.navigate(["task-details",id])
   }
 
 }

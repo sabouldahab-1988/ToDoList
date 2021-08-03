@@ -1,0 +1,19 @@
+<div class="taskDetailsContainer" *ngIf="task!=undefined;else spinner_gif">
+  <h2 mat-dialog-title>
+    To Do Details
+  </h2>
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Title</mat-label>
+    <input [(value)]="task.title" matInput disabled>
+  </mat-form-field>
+  <br />
+  <mat-checkbox class="example-margin" [(checked)]="task.completed" disabled>Completed</mat-checkbox>
+  <br />
+  <div class="actionsContainer">
+    <button mat-raised-button color="primary" type="submit" (click)="onCancel()">Save</button>
+    <button mat-raised-button mat-dialog-close class="btn" (click)="onCancel()">Cancel</button>
+  </div>
+</div>
+<ng-template #spinner_gif>
+  <mat-spinner></mat-spinner>
+</ng-template>

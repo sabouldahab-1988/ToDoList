@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
-import { Task } from '../store/Task';
+import { Task } from '../store/task';
 import { AddTask, RemoveTask } from '../store/task.actions';
 import { Observable } from 'rxjs';
 
@@ -19,6 +19,7 @@ export class DialogRemoveTaskComponent implements OnInit {
   }
 
   onDelete():void{
+    console.log("Remove Id",this.data);
     this.store.dispatch(new RemoveTask(this.data));
     this.matDialog.closeAll();
   }
