@@ -1,5 +1,8 @@
 
-<div class="mat-elevation-z8">
+<mat-spinner *ngIf="(loading | async)" class="centerSpinner" >
+
+</mat-spinner>
+<div class="mat-elevation-z8" *ngIf="!(loading | async)">
 <button mat-raised-button (click)="addTask()" id="btn_addNewTask">Add New Task</button>
 
 

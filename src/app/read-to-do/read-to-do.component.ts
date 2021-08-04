@@ -29,6 +29,9 @@ export class ReadToDoComponent extends BaseComponent implements OnInit,AfterView
   task:Task;
   displayedColumns: string[] = ['title', 'completed','actions','details','id'];
 
+  @Select(TaskState.loading)
+  loading:Observable<boolean>
+
   constructor(private store:Store,public dialog: MatDialog,public router:Router) {
      super();
   }
@@ -76,10 +79,6 @@ export class ReadToDoComponent extends BaseComponent implements OnInit,AfterView
     const dialogRef = this.dialog.open(DialogAddTaskComponent, {
       width: '350px',
       data:task
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 

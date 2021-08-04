@@ -1,30 +1,41 @@
 import { Task } from "./task";
 
-export class AddTask{
-  static readonly type ='[TASK] Add';
+export class AddTask {
+  static readonly type = '[TASK] Add';
 
-  constructor(public payload:Task){}
+  constructor(public payload: Task) { }
 }
 
-export class RemoveTask{
-  static readonly type='[TASK] Remove';
+export class RemoveTask {
+  static readonly type = '[TASK] Remove';
 
-  constructor(public payload:number){}
+  constructor(public payload: number) { }
 }
 
-export class UpdateTask{
-  static readonly type='[TASK] Update';
+export class UpdateTask {
+  static readonly type = '[TASK] Update';
 
-  constructor(public payload:Task,public id:number){}
+  constructor(public payload: Task, public id: number) { }
 }
 
 export class GetTasks {
   static readonly type = '[Task] Get';
 }
 
-export class GetSelectedTask{
-  static readonly type='Task Get';
+export class GetSelectedTask {
+  static readonly type = 'Task Get';
 
-  constructor(public payload:number){}
+  constructor(public payload: number) { }
 }
 
+export class LoadTasksSuccess {
+  static readonly type = "[Task] LoadTasksSuccess";
+
+  constructor(public readonly payload: Task[]) { };
+}
+
+export class LoadTasksError {
+  static readonly type = "[Task] LoadTasksError";
+
+  constructor(public readonly payload: string) { };
+}
