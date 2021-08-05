@@ -27,6 +27,7 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     NgxsModule.forRoot([
       TaskState
     ]),
+    NgxPermissionsModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     MatButtonModule,

@@ -23,6 +23,7 @@
     "@angular/router": "~9.1.13",
     "@briebug/jest-schematic": "^3.1.0",
     "@ngxs/store": "^3.7.2",
+    "ngx-permissions": "^8.1.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -32,6 +33,7 @@
     "@angular-devkit/build-angular": "~0.901.13",
     "@angular/cli": "~9.1.13",
     "@angular/compiler-cli": "~9.1.13",
+    "@ngneat/spectator": "^8.0.2",
     "@ngxs/devtools-plugin": "^3.7.2",
     "@ngxs/logger-plugin": "^3.7.2",
     "@types/jasmine": "~3.5.0",
